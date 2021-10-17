@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { createStore } from "redux";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<App />, document.getElementById("root"));
+
+//STORE -> GLOBALIZED STATE
+
+//ACTION INCREMENT - function that returns an object
+const increment = () => {
+  return {
+    type: "INCREMENT",
+  };
+};
+const decrement = () => {
+  return {
+    type: "DECREMENT",
+  };
+};
+
+//REDUCER - DESCRIBES HOW ACTIONS TRANSFORMS STATE INTO NEXT STATE
+//checks action, and based on action it changes store
+const counter = (state = 0, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
+  }
+};
+
+let store = createStore(counter);
+
+//display in console
+store.subscribe(() => console.log(store.getState()));
+
+//DISPATCH
+store.dispatch(increment());
