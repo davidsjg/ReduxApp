@@ -22,6 +22,7 @@ export const PostsList = () => {
         {post.content.substring(0, 100)}
         <span>"</span>
       </p>
+      <p>id: {post.id}</p>
       <button name={post.id} type="button" onClick={onDeletePostClicked}>
         Delete
       </button>

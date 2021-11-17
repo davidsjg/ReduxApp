@@ -20,6 +20,10 @@ p {
   font-size: 1.1rem;
 }
 
+button {
+  color: red;
+}
+
 /* Navbar */
 
 nav {
@@ -274,4 +278,8 @@ button.reaction-button {
 
 .notification.new {
   background-color: rgba(29, 161, 242, 0.1);
+}
+
+.formButton {
+  margin: 0 10px;
 }

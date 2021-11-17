@@ -13,18 +13,27 @@ const postsSlice = createSlice({
       state.push(action.payload);
     },
     postDeleted(state, action) {
-      let temp = state.indexOf(action.payload);
-      console.log(temp);
-      // let result = state.filter((post) => {
-      //   console.log(post);
-      //   return post.id === action.payload;
-      // });
-      // console.log(result);
+      console.log(action);
+
+      let newTemp = state.find((post) => post.id === action.payload);
+
+      let temp = state.indexOf(newTemp);
+
       state.splice(temp, 1);
+
+      // state.splice(state.indexOf(action.payload.id), 1);
+    },
+    postUpdated(state, action) {
+      console.log(action);
+
+      let newTemp = state.find((post) => post.id === action.payload.id);
+
+      let temp = state.indexOf(newTemp);
+      state.splice(temp, 1, action.payload);
     },
   },
 });
 
-export const { postAdded, postDeleted } = postsSlice.actions;
+export const { postAdded, postDeleted, postUpdated } = postsSlice.actions;
 
 export default postsSlice.reducer;
