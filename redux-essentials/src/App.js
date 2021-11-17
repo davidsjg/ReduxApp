@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import { Navbar } from "./app/Navbar";
+import { AddPostForm } from "./features/posts/AddPostForm";
 import { PostsList } from "./features/posts/PostsLists";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             path="/"
             render={() => (
               <>
+                <AddPostForm />
                 <PostsList />
               </>
             )}
