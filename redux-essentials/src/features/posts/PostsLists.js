@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { postDeleted } from "./postsSlice";
 
@@ -22,6 +23,9 @@ export const PostsList = () => {
         {post.content.substring(0, 100)}
         <span>"</span>
       </p>
+      <Link to={`/posts/${post.id}`} className="button muted-button">
+        View Post
+      </Link>
       <p>id: {post.id}</p>
       <button name={post.id} type="button" onClick={onDeletePostClicked}>
         Delete

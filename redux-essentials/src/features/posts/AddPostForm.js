@@ -28,6 +28,7 @@ export const AddPostForm = () => {
 
       setTitle("");
       setContent("");
+      setUpdate("");
     }
   };
 
@@ -41,9 +42,9 @@ export const AddPostForm = () => {
         })
       );
 
+      setUpdate("");
       setTitle("");
       setContent("");
-      setUpdate("");
     }
   };
 
@@ -79,7 +80,7 @@ export const AddPostForm = () => {
           type="text"
           id="postUpdate"
           name="postUpdate"
-          valeu={update}
+          value={update}
           onChange={onUpdateChanged}
         />
         <button
