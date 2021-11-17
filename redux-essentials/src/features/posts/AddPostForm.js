@@ -28,6 +28,12 @@ export const AddPostForm = () => {
     }
   };
 
+  // let myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon']
+  // let removed = myFish.splice(3, 1)
+
+  // myFish is ["angel", "clown", "drum", "sturgeon"]
+  // removed is ["mandarin"]
+
   return (
     <section>
       <h2>Add a New Post</h2>
