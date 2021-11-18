@@ -13,8 +13,6 @@ const postsSlice = createSlice({
       state.push(action.payload);
     },
     postDeleted(state, action) {
-      console.log(action);
-
       let newTemp = state.find((post) => post.id === action.payload);
 
       let temp = state.indexOf(newTemp);
@@ -24,9 +22,9 @@ const postsSlice = createSlice({
       // state.splice(state.indexOf(action.payload.id), 1);
     },
     postUpdated(state, action) {
-      console.log(action);
+      const { id, title, content } = action.payload;
 
-      let newTemp = state.find((post) => post.id === action.payload.id);
+      let newTemp = state.find((post) => post.id === id);
 
       let temp = state.indexOf(newTemp);
       state.splice(temp, 1, action.payload);
