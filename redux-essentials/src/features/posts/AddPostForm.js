@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 
 import { postAdded } from "./postsSlice";
@@ -9,20 +9,24 @@ export const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [update, setUpdate] = useState("");
+  const [userId, setUserId] = useState("");
 
   const dispatch = useDispatch();
+
+  const users = useSelector((state) => state.users);
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onUpdateChanged = (e) => setUpdate(e.target.value);
+  const onAuthorChanged = (e) => setUserId(e.target.value);
 
   const onSavePostClicked = () => {
     if (title && content) {
       dispatch(
         postAdded({
-          id: nanoid(),
           title,
           content,
+          userId,
         })
       );
 
@@ -48,11 +52,13 @@ export const AddPostForm = () => {
     }
   };
 
-  // let myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon']
-  // let removed = myFish.splice(3, 1)
+  const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
 
-  // myFish is ["angel", "clown", "drum", "sturgeon"]
-  // removed is ["mandarin"]
+  const usersOptions = users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ));
 
   return (
     <section>
@@ -67,6 +73,13 @@ export const AddPostForm = () => {
           value={title}
           onChange={onTitleChanged}
         />
+
+        <label htmlFor="postAuthor">Author:</label>
+        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+          <option value=""></option>
+          {usersOptions}
+        </select>
+
         <label htmlFor="postContent">Content:</label>
         <input
           type="text"
@@ -94,6 +107,7 @@ export const AddPostForm = () => {
           type="button"
           onClick={onUpdatePostClicked}
           className="formButton"
+          disabled={!canSave}
         >
           Update Post
         </button>

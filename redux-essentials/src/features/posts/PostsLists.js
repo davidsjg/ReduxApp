@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { PostAuthor } from "./PostAuthor";
 
 import { postDeleted } from "./postsSlice";
 
@@ -18,6 +19,7 @@ export const PostsList = () => {
   const renderedPosts = posts.map((post) => (
     <article className="post-excerpt" key={post.id}>
       <h3>{post.title}</h3>
+      <PostAuthor userId={post.user} />
       <p className="post-content">
         <span>"</span>
         {post.content.substring(0, 100)}
